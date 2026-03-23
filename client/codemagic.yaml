@@ -1,0 +1,80 @@
+workflows:
+  # ─────────────────────────────────────
+  # Android 빌드
+  # ─────────────────────────────────────
+  android-release:
+    name: Android Release
+    max_build_duration: 30
+    instance_type: linux_x2
+    environment:
+      flutter: stable
+      groups:
+        - android_signing  # Codemagic에서 설정
+    scripts:
+      - name: Get dependencies
+        script: cd client && flutter pub get
+
+      - name: Run tests
+        script: cd client && flutter test
+
+      - name: Build AAB
+        script: |
+          cd client
+          flutter build appbundle --release \
+            --obfuscate \
+            --split-debug-info=build/debug-info
+
+    artifacts:
+      - client/build/**/outputs/**/*.aab
+      - client/build/**/outputs/**/*.apk
+
+    publishing:
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal  # internal → alpha → beta → production
+
+  # ─────────────────────────────────────
+  # iOS 빌드 (Windows에서 불가능하므로 여기서 빌드)
+  # ─────────────────────────────────────
+  ios-release:
+    name: iOS Release
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: Jeong ASC  # Codemagic에서 설정
+    environment:
+      flutter: stable
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.jeong.jeong
+      vars:
+        BUNDLE_ID: com.jeong.jeong
+        APP_STORE_APPLE_ID: 0000000000  # App Store Connect에서 발급
+    scripts:
+      - name: Get dependencies
+        script: cd client && flutter pub get
+
+      - name: Run tests
+        script: cd client && flutter test
+
+      - name: Set up code signing
+        script: xcode-project use-profiles
+
+      - name: Build IPA
+        script: |
+          cd client
+          flutter build ipa --release \
+            --obfuscate \
+            --split-debug-info=build/debug-info \
+            --export-options-plist=/Users/builder/export_options.plist
+
+    artifacts:
+      - client/build/ios/ipa/*.ipa
+      - client/build/debug-info/**
+
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        beta_groups:
+          - Internal Testers

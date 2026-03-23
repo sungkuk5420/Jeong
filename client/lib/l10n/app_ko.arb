@@ -1,0 +1,7 @@
+{
+  "@@locale": "ko",
+  "appTitle": "Jeong",
+  "@appTitle": {
+    "description": "앱 제목"
+  }
+}

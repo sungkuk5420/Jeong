@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter --version)",
+      "Bash(winget search Google.Flutter)",
+      "Bash(winget search flutter)",
+      "Bash(export PATH=\"/c/Users/sungk/development/flutter/bin:$PATH\")",
+      "Bash(flutter doctor)",
+      "Bash(curl -s \"http://localhost:3000/api/naver-map/all-search?query=%EC%9D%8C%EC%8B%9D%EC%A0%90\")",
+      "Bash(flutter config --android-sdk \"C:\\\\Users\\\\sungk\\\\AppData\\\\Local\\\\Android\\\\Sdk\")",
+      "Bash(flutter doctor --android-licenses)",
+      "Bash(curl -s \"http://localhost:3000/api/naver-map/all-search?query=%EC%9D%8C%EC%8B%9D%EC%A0%90&token=T3UMdF5xwGf6Sb6B-LqE7D28ACDurY-OTKKm0CT_QFk%3D\")",
+      "Bash(yes)",
+      "Bash(printf 'y\\\\ny\\\\ny\\\\ny\\\\ny\\\\ny\\\\ny\\\\ny\\\\ny\\\\ny\\\\n')",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(flutter create --org com.jeong --project-name jeong .)"
+    ]
+  }
+}

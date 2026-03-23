@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040428184607",
+    "project_id": "jeong-7ef84",
+    "storage_bucket": "jeong-7ef84.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040428184607:android:3395d6b4e925cfac4b112a",
+        "android_client_info": {
+          "package_name": "com.jeong.jeong"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCofrzqD9xwUc_KBStO2-2brzE1Hq0amKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
