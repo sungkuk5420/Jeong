@@ -20,3 +20,8 @@ Thumbs.db
 client/build/
 client/.dart_tool/
 client/.packages
+
+# Secrets
+client_secret_*
+*.keystore
+key.properties
